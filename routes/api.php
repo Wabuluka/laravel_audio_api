@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['cors'])->group(function () {
     Route::post('/audio', [AudioController::class, 'audioStore']);
+    Route::get('/audio', [AudioController::class, 'getAudios']);
 });

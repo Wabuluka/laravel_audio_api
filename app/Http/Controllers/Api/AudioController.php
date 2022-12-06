@@ -31,11 +31,12 @@ class AudioController extends Controller
             $audioFile->audio   = url('uploads' . '/audio_files/'  . $filename);
             //save audio
             $audioFile->save();
-            return $this->successResponse($audioFile, 'Audio Successfuly Created', 201);
+            return $audioFile;
         }
     }
 
     public function getAudios(){
-
+        $audio = Audio::get();
+        return $audio;
     }
 }
