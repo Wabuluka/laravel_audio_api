@@ -17,12 +17,15 @@ class AudioController extends Controller
         //     'audio' => $audio_uri
         // ]);
         // return response($data, Response::HTTP_CREATED);
-
-        $audioFile = new Audio();
+        dd($request->body);
+        try{
+            $audioFile = new Audio();
         // customer_id
         // $audioFile->customer_id = $request->customer_id;
         // $audioFile->location = $request->location;
         // pick audio file
+        dd($request->body);
+
         if($request->hasfile('audio')){
             $file               = $request->file('audio');
             $extension          = $file->getClientOriginalExtension();
@@ -31,7 +34,10 @@ class AudioController extends Controller
             $audioFile->audio   = url('uploads' . '/audio_files/'  . $filename);
             //save audio
             $audioFile->save();
-            return $audioFile;
+            return response($audioFile, Response::HTTP_CREATED);
+            }
+        }catch(error){
+            dd(error);
         }
     }
 
